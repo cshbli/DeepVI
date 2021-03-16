@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DeepVI.iml" filepath="$PROJECT_DIR$/DeepVI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1189802714/DeepVI.caffeAndroid.iml" filepath="$PROJECT_DIR$/.idea/modules/1189802714/DeepVI.caffeAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/deepVI/DeepVI.deepVI.iml" filepath="$PROJECT_DIR$/.idea/modules/deepVI/DeepVI.deepVI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hiobjectscan-release/DeepVI.hiobjectscan-release.iml" filepath="$PROJECT_DIR$/.idea/modules/hiobjectscan-release/DeepVI.hiobjectscan-release.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1451885200/DeepVI.hiscan.iml" filepath="$PROJECT_DIR$/.idea/modules/-1451885200/DeepVI.hiscan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-628328930/DeepVI.hiscanlite.iml" filepath="$PROJECT_DIR$/.idea/modules/-628328930/DeepVI.hiscanlite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1103365894/DeepVI.openCVLibrary310.iml" filepath="$PROJECT_DIR$/.idea/modules/1103365894/DeepVI.openCVLibrary310.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1878287371/DeepVI.tfandroid.iml" filepath="$PROJECT_DIR$/.idea/modules/1878287371/DeepVI.tfandroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/viUtils/DeepVI.viUtils.iml" filepath="$PROJECT_DIR$/.idea/modules/viUtils/DeepVI.viUtils.iml" />
+    </modules>
+  </component>
+</project>

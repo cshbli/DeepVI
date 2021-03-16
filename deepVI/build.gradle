@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        applicationId "com.huawei.vi.androiddemo"
+        minSdkVersion 22
+        targetSdkVersion 30
+        multiDexEnabled true
+
+        /*
+        ndk {
+            moduleName "tensorflow_demo"
+        }
+        */
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    aaptOptions {
+        noCompress "tflite"
+    }
+}
+
+repositories {
+    maven {
+        url 'https://google.bintray.com/tensorflow'
+    }
+}
+
+dependencies {
+    api 'com.android.support:multidex:1.0.1'
+    api 'com.google.android.gms:play-services:10.2.1'
+    api project(':viUtils')
+    api project(':openCVLibrary310')
+    api project(':caffeAndroid')
+    api project(':hiscan')
+    api project(':hiscanlite')
+    /*
+        compile 'org.tensorflow:tensorflow-lite:0.1'
+        */
+}

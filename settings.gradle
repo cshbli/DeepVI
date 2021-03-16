@@ -1,0 +1,17 @@
+include ':deepVI', ':viUtils', ':hiobjectscan-release'
+
+
+include ':openCVLibrary310'
+project(':openCVLibrary310').projectDir = new File(settingsDir, '../AndroidLib/openCVLibrary310')
+
+include ':caffeAndroid'
+project(':caffeAndroid').projectDir = new File(settingsDir, '../AndroidLib/caffeAndroid')
+
+include ':hiscan'
+project(':hiscan').projectDir = new File(settingsDir, '../AndroidLib/hiscan')
+
+include ':hiscanlite'
+project(':hiscanlite').projectDir = new File(settingsDir, '../AndroidLib/hiscanlite')
+
+include ':tfandroid'
+project(':tfandroid').projectDir = new File(settingsDir, '../AndroidLib/tfandroid')

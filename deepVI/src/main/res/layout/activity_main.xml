@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"    
+    tools:context=".MainActivity" >
+    
+    <android.support.v7.widget.Toolbar
+        android:id = "@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"  
+      	android:layout_width="match_parent"
+      	android:layout_height="wrap_content"      	
+      	android:background="?attr/colorPrimary">         
+    </android.support.v7.widget.Toolbar>
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <!--  <com.huawei.vi.androiddemo.FaceView -->
+        <com.huawei.vi.androiddemo.RecognitionScoreView
+            android:id="@+id/ivCaptured"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:id="@+id/tvLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textSize="24sp"
+            android:textColor="#0000FF"
+            android:background="#07000000"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+</LinearLayout>

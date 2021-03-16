@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="PLATFORM" />
+        <option name="disableWrapperSourceDistributionNotification" value="true" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../AndroidLib/caffeAndroid" />
+            <option value="$PROJECT_DIR$/../AndroidLib/hiscan" />
+            <option value="$PROJECT_DIR$/../AndroidLib/hiscanlite" />
+            <option value="$PROJECT_DIR$/../AndroidLib/openCVLibrary310" />
+            <option value="$PROJECT_DIR$/../AndroidLib/tfandroid" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/deepVI" />
+            <option value="$PROJECT_DIR$/hiobjectscan-release" />
+            <option value="$PROJECT_DIR$/viUtils" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
