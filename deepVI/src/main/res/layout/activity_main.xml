@@ -17,8 +17,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
-        <!--  <com.huawei.vi.androiddemo.FaceView -->
-        <com.huawei.vi.androiddemo.RecognitionScoreView
+        <!--  <com.vi.androiddemo.FaceView -->
+        <com.vi.androiddemo.RecognitionScoreView
             android:id="@+id/ivCaptured"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
