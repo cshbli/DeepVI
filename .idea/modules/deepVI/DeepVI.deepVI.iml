@@ -43,9 +43,10 @@
       <excludeFolder url="file://$MODULE_DIR$/../../../deepVI/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../deepVI/build" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 30 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:24.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.checkerframework:checker-qual:2.5.8" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:multidex:1.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services:10.2.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads:10.2.1@aar" level="project" />
@@ -102,11 +103,10 @@
     <orderEntry type="library" name="Gradle: com.android.support:animated-vector-drawable:24.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable:24.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-v4:24.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.tensorflow:tensorflow-lite-support:0.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.tensorflow:tensorflow-lite:2.4.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly-SNAPSHOT@aar" level="project" />
     <orderEntry type="module" module-name="DeepVI.viUtils" />
-    <orderEntry type="module" module-name="DeepVI.caffeAndroid" />
     <orderEntry type="module" module-name="DeepVI.openCVLibrary310" />
-    <orderEntry type="module" module-name="DeepVI.hiscan" />
-    <orderEntry type="module" module-name="DeepVI.hiscanlite" />
-    <orderEntry type="module" module-name="DeepVI.tfandroid" />
   </component>
 </module>

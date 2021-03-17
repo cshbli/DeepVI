@@ -12,9 +12,11 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.vi.hivision.HiObjectScan;
+//import com.vi.hivision.HiObjectScan;
+import org.tensorflow.lite.examples.classification.tflite.Classifier;
 
-import org.tensorflow.demo.env.BorderedText;
+//import org.tensorflow.demo.env.BorderedText;
+import org.tensorflow.lite.examples.classification.env.BorderedText;
 
 
 import java.util.List;
@@ -25,7 +27,8 @@ import java.util.List;
 
 public class RecognitionScoreView extends View {
     private Bitmap mBitmap;
-    private List<HiObjectScan.Recognition> results;
+//    private List<HiObjectScan.Recognition> results;
+    private List<Classifier.Recognition> results;
     private int xOffset = 0;
     private int yOffset = 0;
 
@@ -69,7 +72,7 @@ public class RecognitionScoreView extends View {
     /**
      * Sets the bitmap background and the detected objects
      */
-    public void setContent(Bitmap bitmap, final List<HiObjectScan.Recognition> results) {
+    public void setContent(Bitmap bitmap, final List<Classifier.Recognition> results) {
         mBitmap = bitmap;
         this.results = results;
         invalidate();
@@ -128,7 +131,7 @@ public class RecognitionScoreView extends View {
         }
         */
         int i = 0;
-        for (final HiObjectScan.Recognition result : results) {
+        for (final Classifier.Recognition result : results) {
             final RectF location = result.getLocation();
             boxPaint.setColor(COLORS[i]);
             i = (i + 1) % COLORS.length;

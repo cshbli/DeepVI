@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 28
 
     defaultConfig {
-        applicationId "com.huawei.vi.androiddemo"
+        applicationId "com.vi.androiddemo"
         minSdkVersion 22
-        targetSdkVersion 30
+        targetSdkVersion 28
         multiDexEnabled true
 
         /*
@@ -39,10 +39,16 @@ dependencies {
     api 'com.google.android.gms:play-services:10.2.1'
     api project(':viUtils')
     api project(':openCVLibrary310')
-    api project(':caffeAndroid')
-    api project(':hiscan')
-    api project(':hiscanlite')
-    /*
-        compile 'org.tensorflow:tensorflow-lite:0.1'
-        */
+
+//    implementation 'androidx.appcompat:appcompat:1.0.0'
+
+    // Build off of nightly TensorFlow Lite
+    // TODO: Add TFLite dependencies
+    implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly-SNAPSHOT'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly-SNAPSHOT'
+
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
+
+    // Use local TensorFlow library
+    // implementation 'org.tensorflow:tensorflow-lite-local:0.0.0'
 }

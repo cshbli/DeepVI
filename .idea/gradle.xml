@@ -11,14 +11,9 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/../AndroidLib/caffeAndroid" />
-            <option value="$PROJECT_DIR$/../AndroidLib/hiscan" />
-            <option value="$PROJECT_DIR$/../AndroidLib/hiscanlite" />
             <option value="$PROJECT_DIR$/../AndroidLib/openCVLibrary310" />
-            <option value="$PROJECT_DIR$/../AndroidLib/tfandroid" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/deepVI" />
-            <option value="$PROJECT_DIR$/hiobjectscan-release" />
             <option value="$PROJECT_DIR$/viUtils" />
           </set>
         </option>

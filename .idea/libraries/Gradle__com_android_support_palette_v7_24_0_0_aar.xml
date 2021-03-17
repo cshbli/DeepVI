@@ -1,9 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:palette-v7:24.0.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7d53ead2ca00ac1e056f51098f00100b/palette-v7-24.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2df5bc2b5eb570b14e3745f664c7828b/palette-v7-24.0.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2df5bc2b5eb570b14e3745f664c7828b/palette-v7-24.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2df5bc2b5eb570b14e3745f664c7828b/palette-v7-24.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2df5bc2b5eb570b14e3745f664c7828b/palette-v7-24.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

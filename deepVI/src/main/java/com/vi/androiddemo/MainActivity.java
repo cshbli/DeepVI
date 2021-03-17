@@ -47,23 +47,27 @@ import java.util.List;
 import java.util.Locale;
 
 import org.opencv.android.OpenCVLoader;
-import org.tensorflow.demo.Classifier;
-import org.tensorflow.demo.TensorFlowImageClassifier;
-import org.tensorflow.demo.TensorFlowObjectDetectionAPIModel;
-import org.tensorflow.demo.TensorFlowYoloDetector;
-import org.tensorflow.demo.env.ImageUtils;
+//import org.tensorflow.demo.Classifier;
+//import org.tensorflow.demo.TensorFlowImageClassifier;
+//import org.tensorflow.demo.TensorFlowObjectDetectionAPIModel;
+//import org.tensorflow.demo.TensorFlowYoloDetector;
+//import org.tensorflow.demo.env.ImageUtils;
 
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 
-import com.huawei.vi.androidlib.ViUtils;
-import com.huawei.vi.androidlib.caffe.CaffeMobile;
+//import com.huawei.vi.androidlib.ViUtils;
+//import com.huawei.vi.androidlib.caffe.CaffeMobile;
+//
+//import com.huawei.hivision.hiscan.HiScan;
+//import com.vi.hivision.HiObjectScan;
+//import com.huawei.hivision.hiscanlite.HiScanLite;
 
-import com.huawei.hivision.hiscan.HiScan;
-import com.vi.hivision.HiObjectScan;
-import com.huawei.hivision.hiscanlite.HiScanLite;
+import org.tensorflow.lite.examples.classification.env.Logger;
+import org.tensorflow.lite.examples.classification.tflite.Classifier;
+import org.tensorflow.lite.examples.classification.tflite.Classifier.Device;
 
 public class MainActivity extends AppCompatActivity implements CNNListener {
     private static final String TAG = "MainActivity";
@@ -92,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements CNNListener {
     private Uri fileUri;
     private ProgressDialog dialog;
     private Bitmap bmp;
-    private CaffeMobile caffeObject;
+//    private CaffeMobile caffeObject;
     
     private float[] objectProbs;
     private int[] mappingResults;
@@ -112,17 +116,26 @@ public class MainActivity extends AppCompatActivity implements CNNListener {
     private int modelSelected = MODEL_SCANNER_MOBILENET_0_5_224;
     private int prevModelSelected = MODEL_SCANNER_MOBILENET_0_5_224;
 
-    private HiScan scanner;
-    private List<HiScan.Recognition> scannerResults;
-    private List<Classifier.Recognition> tfResults;
+//    private HiScan scanner;
+//    private List<HiScan.Recognition> scannerResults;
+//    private List<Classifier.Recognition> tfResults;
+//
+//    private HiObjectScan objectScanner;
+//    private List<HiObjectScan.Recognition> objectScannerResults;
 
-    private HiObjectScan objectScanner;
-    private List<HiObjectScan.Recognition> objectScannerResults;
+//    private HiScanLite scannerLite;
 
-    private HiScanLite scannerLite;
+    private Classifier classifier;
+    private List<Classifier.Recognition> classifierResults;
 
     Detector<Face> safeFaceDetector;
     public SparseArray<Face> mFaces;
+
+    private static final Logger LOGGER = new Logger();
+    /** Input image size of the model along x axis. */
+    private int imageSizeX;
+    /** Input image size of the model along y axis. */
+    private int imageSizeY;
 
     static {
         if (!OpenCVLoader.initDebug()) {
@@ -159,11 +172,11 @@ public class MainActivity extends AppCompatActivity implements CNNListener {
 		                return true;
 		                
 					case R.id.miCamera:
-						initPrediction();		                
-		                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-		                Intent i2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		                i2.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-		                startActivityForResult(i2, REQUEST_IMAGE_CAPTURE);
+//						initPrediction();
+//		                fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+//		                Intent i2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//		                i2.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+//		                startActivityForResult(i2, REQUEST_IMAGE_CAPTURE);
 		                return true;
 		                
 					case R.id.action_settings:
@@ -175,21 +188,41 @@ public class MainActivity extends AppCompatActivity implements CNNListener {
 		});
     }
 
+    private void recreateClassifier(Classifier.Device device, int numThreads) {
+        if (classifier != null) {
+            LOGGER.d("Closing classifier.");
+            classifier.close();
+            classifier = null;
+        }
+        try {
+            LOGGER.d(
+                    "Creating classifier (device=%s, numThreads=%d)", device, numThreads);
+            classifier = Classifier.create(this, device, numThreads);
+        } catch (IOException e) {
+            LOGGER.e(e, "Failed to create classifier.");
+        }
+
+        // Updates the input image size.
+        imageSizeX = classifier.getImageSizeX();
+        imageSizeY = classifier.getImageSizeY();
+    }
+
     private void switchModel() {
     	// ImageNet image mean values: B: 104.007, G: 116.669, R: 122.679
         float[] meanValues = {104.007f, 116.669f, 122.679f};
         
     	switch (modelSelected) {
             case MODEL_SCANNER_MOBILENET_0_5_224:
-                scanner = new HiScan(this);
+//                scanner = new HiScan(this);
+                recreateClassifier(Device.CPU, 1);
                 break;
 
             case MODEL_SCANNER_MOBILENET_0_5_224_LITE:
-                scannerLite = new HiScanLite(this);
+//                scannerLite = new HiScanLite(this);
                 break;
 
             case MODEL_SSD_MOBILENET:
-                objectScanner = new HiObjectScan(this);
+//                objectScanner = new HiObjectScan(this);
                 break;
         }
     }
@@ -372,31 +405,39 @@ public class MainActivity extends AppCompatActivity implements CNNListener {
             
             switch (modelSelected) {
             case MODEL_SCANNER_MOBILENET_0_5_224:
-                scannerResults = scanner.recognizeImage(bmp);
+//                scannerResults = scanner.recognizeImage(bmp);
+//                Log.e(TAG, String.format("Model running time: %d ms", SystemClock.uptimeMillis() - startTime));
+//                tfResults = scanner.getTfResults();
+//                if (scannerResults != null) {
+//                    for (final HiScan.Recognition recog : scannerResults) {
+//                        Log.e(TAG, recog.getTitle() + ": " + recog.getConfidence());
+//                    }
+//                }
+                classifierResults = classifier.recognizeImage(bmp, 90);
                 Log.e(TAG, String.format("Model running time: %d ms", SystemClock.uptimeMillis() - startTime));
-                tfResults = scanner.getTfResults();
-                if (scannerResults != null) {
-                    for (final HiScan.Recognition recog : scannerResults) {
+                if (classifierResults != null) {
+                    for (final Classifier.Recognition recog : classifierResults) {
                         Log.e(TAG, recog.getTitle() + ": " + recog.getConfidence());
                     }
                 }
+
                 results = new int[1];
 	            break;
 
             case MODEL_SCANNER_MOBILENET_0_5_224_LITE:
-                scannerLite.recognizeImage(bmp);
-                Log.e(TAG, String.format("Model running time: %d ms", SystemClock.uptimeMillis() - startTime));
+//                scannerLite.recognizeImage(bmp);
+//                Log.e(TAG, String.format("Model running time: %d ms", SystemClock.uptimeMillis() - startTime));
                 results = new int[1];
                 break;
 
             case MODEL_SSD_MOBILENET:
-                objectScannerResults = objectScanner.recognizeImage(bmp);
-
-                if (objectScannerResults != null) {
-                    for (final HiObjectScan.Recognition recog : objectScannerResults) {
-                        Log.e(TAG, recog.getTitle() + ": " + recog.getConfidence() + ", " + recog.getLocation().width() + ", " + recog.getLocation().height());
-                    }
-                }
+//                objectScannerResults = objectScanner.recognizeImage(bmp);
+//
+//                if (objectScannerResults != null) {
+//                    for (final HiObjectScan.Recognition recog : objectScannerResults) {
+//                        Log.e(TAG, recog.getTitle() + ": " + recog.getConfidence() + ", " + recog.getLocation().width() + ", " + recog.getLocation().height());
+//                    }
+//                }
 
                 results = new int[1];
                 break;
@@ -423,7 +464,7 @@ public class MainActivity extends AppCompatActivity implements CNNListener {
         
         //ivCaptured.setImageBitmap(bmp);
         if (modelSelected == MODEL_SSD_MOBILENET) {
-            ivCaptured.setContent(bmp, objectScannerResults);
+//            ivCaptured.setContent(bmp, objectScannerResults);
         } else {
             ivCaptured.setContent(bmp);
         }
@@ -436,25 +477,32 @@ public class MainActivity extends AppCompatActivity implements CNNListener {
 
 
         case MODEL_SCANNER_MOBILENET_0_5_224:
-            if (scannerResults != null) {
-                for (final HiScan.Recognition recog : scannerResults) {
+//            if (scannerResults != null) {
+//                for (final HiScan.Recognition recog : scannerResults) {
+//                    //sb.append(scanner.getChineseLabel(recog.getTitle()) + ": " + String.format("%.02f", recog.getConfidence()));
+//                    sb.append(recog.getTitle() + ": " + String.format("%.02f", recog.getConfidence()));
+//                    sb.append(System.getProperty("line.separator"));
+//                }
+//            }
+//
+//            if (tfResults != null) {
+//                int i = 0;
+//                sb.append(System.getProperty("line.separator"));
+//                for (final Classifier.Recognition rawRecog : tfResults) {
+//                    //sb.append(scanner.getChineseLabel(recog.getTitle()) + ": " + String.format("%.02f", recog.getConfidence()));
+//                    sb.append(rawRecog.getTitle() + ": " + String.format("%.03f", rawRecog.getConfidence()));
+//                    sb.append(System.getProperty("line.separator"));
+//                    i++;
+//                    if (i >= 5) {
+//                        break;
+//                    }
+//                }
+//            }
+            if (classifierResults != null) {
+                for (final Classifier.Recognition recog : classifierResults) {
                     //sb.append(scanner.getChineseLabel(recog.getTitle()) + ": " + String.format("%.02f", recog.getConfidence()));
                     sb.append(recog.getTitle() + ": " + String.format("%.02f", recog.getConfidence()));
                     sb.append(System.getProperty("line.separator"));
-                }
-            }
-
-            if (tfResults != null) {
-                int i = 0;
-                sb.append(System.getProperty("line.separator"));
-                for (final Classifier.Recognition rawRecog : tfResults) {
-                    //sb.append(scanner.getChineseLabel(recog.getTitle()) + ": " + String.format("%.02f", recog.getConfidence()));
-                    sb.append(rawRecog.getTitle() + ": " + String.format("%.03f", rawRecog.getConfidence()));
-                    sb.append(System.getProperty("line.separator"));
-                    i++;
-                    if (i >= 5) {
-                        break;
-                    }
                 }
             }
 
